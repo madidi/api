@@ -15,7 +15,10 @@ class AdminCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        dd('this is checker');
-        return $next($request);
+        if ($request['role']=='admin'){
+            return $next($request);
+        }else{
+            return response()->json(['error'=>'you are not admin']);
+        }
     }
 }
