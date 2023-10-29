@@ -15,6 +15,7 @@ class AdminCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
+        dd('this is checker');
         return $next($request);
     }
 }

@@ -4,7 +4,7 @@ use App\Http\Controllers\AdminDashboard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
-
+use App\Http\Middleware\AdminCheck;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
 |
 */
 
-Route::name('admin')->prefix('v1')/*->middleware('AdminCheck')*/ ->group(function () {
+Route::name('admin')->prefix('v1')->middleware(AdminCheck::class)->group(function () {
     Route::get('/admin', [AdminDashboard::class, 'index']);
     Route::get('/admin/order', function () {
         $token = Str::random(10);
